@@ -1,16 +1,14 @@
 import { Form, Head } from "@inertiajs/react";
-import { Sprout, Fish, ShieldCheck, Tractor, ArrowRight } from "lucide-react";
+import { Sprout, ShieldCheck, ArrowRight, Leaf, Fish } from "lucide-react";
 
 import InputError from "@/components/input-error";
 import PasswordInput from "@/components/password-input";
-import TextLink from "@/components/text-link";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
 
-import { register } from "@/routes";
 import { store } from "@/routes/login";
 import { request } from "@/routes/password";
 import PasskeyVerify from "@/components/passkey-verify";
@@ -27,115 +25,52 @@ export default function Login({ status, canResetPassword }: Props) {
 
             <PasskeyVerify />
 
-            <div className="min-h-screen bg-slate-50 lg:grid lg:grid-cols-2">
-                {/* Left branding panel */}
-                <div className="relative hidden overflow-hidden bg-[#14532d] text-white lg:flex lg:flex-col lg:justify-between">
-                    <div className="absolute inset-0 opacity-10">
-                        <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full border-[40px] border-white" />
-                        <div className="absolute -bottom-40 -right-20 h-[500px] w-[500px] rounded-full border-[60px] border-white" />
-                    </div>
-
-                    <div className="relative z-10 p-12">
-                        <div className="flex items-center gap-3">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-green-800">
-                                <Sprout size={27} />
-                            </div>
-                            <div>
-                                <h1 className="text-lg font-bold tracking-wide">
-                                    MUNICIPAL AGRICULTURE OFFICE
-                                </h1>
-                                <p className="text-xs text-green-100">
-                                    Municipality of Estancia, Iloilo
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="relative z-10 max-w-xl px-12 pb-20">
-                        <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-medium">
-                            <ShieldCheck size={15} />
-                            Official MAO Management Portal
-                        </span>
-
-                        <h2 className="text-5xl leading-tight font-bold tracking-tight">
-                            Growing Agriculture.
-                            <br />
-                            <span className="text-green-300">
-                                Sustaining Fisheries.
-                            </span>
-                        </h2>
-
-                        <p className="mt-6 max-w-md text-base leading-7 text-green-100">
-                            An integrated digital platform for managing
-                            agricultural programs, farmer records, fisheries
-                            services, and municipal operations.
-                        </p>
-
-                        <div className="mt-12 grid grid-cols-2 gap-4">
-                            <div className="rounded-xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm">
-                                <Tractor
-                                    className="mb-3 text-green-300"
-                                    size={26}
-                                />
-                                <h3 className="font-semibold">
-                                    Farm Agriculture
-                                </h3>
-                                <p className="mt-1 text-xs text-green-100">
-                                    Farmers, crops, production and assistance
-                                </p>
-                            </div>
-
-                            <div className="rounded-xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm">
-                                <Fish className="mb-3 text-sky-300" size={26} />
-                                <h3 className="font-semibold">Fisheries</h3>
-                                <p className="mt-1 text-xs text-green-100">
-                                    Fisherfolk, vessels and fisheries programs
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="relative z-10 px-12 pb-8 text-xs text-green-200">
-                        © {new Date().getFullYear()} Municipality of Estancia,
-                        Iloilo. All rights reserved.
-                    </div>
+            <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-50 px-4 py-8 sm:px-6 lg:px-8">
+                {/* Background decoration */}
+                <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                    <div className="absolute -left-32 -top-32 h-80 w-80 rounded-full bg-green-100/70 blur-3xl" />
+                    <div className="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-sky-100/70 blur-3xl" />
                 </div>
 
-                {/* Login panel */}
-                <div className="flex min-h-screen items-center justify-center px-6 py-12">
-                    <div className="w-full max-w-md">
-                        {/* Mobile branding */}
-                        <div className="mb-10 flex items-center gap-3 lg:hidden">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-800 text-white">
-                                <Sprout size={27} />
-                            </div>
-                            <div>
-                                <h1 className="text-sm font-bold text-slate-900">
-                                    MUNICIPAL AGRICULTURE OFFICE
-                                </h1>
-                                <p className="text-xs text-slate-500">
-                                    Municipality of Estancia, Iloilo
-                                </p>
-                            </div>
+                <div className="relative z-10 w-full max-w-md">
+                    {/* Branding */}
+                    <div className="mb-8 text-center">
+                        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-green-800 text-white shadow-lg shadow-green-900/20">
+                            <Sprout size={34} strokeWidth={1.8} />
                         </div>
 
-                        <div className="mb-8">
-                            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-green-100 text-green-800">
-                                <ShieldCheck size={25} />
+                        <h1 className="text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
+                            MUNICIPAL AGRICULTURE OFFICE
+                        </h1>
+
+                        <p className="mt-2 text-sm text-slate-500">
+                            Municipality of Estancia, Iloilo
+                        </p>
+
+                        <div className="mx-auto mt-5 flex max-w-xs items-center justify-center gap-3">
+                            <div className="h-1 w-12 rounded-full bg-green-700" />
+                            <div className="h-1 w-12 rounded-full bg-sky-600" />
+                        </div>
+                    </div>
+
+                    {/* Login card */}
+                    <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-xl shadow-slate-200/50 sm:p-8">
+                        <div className="mb-7">
+                            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-green-50 text-green-800">
+                                <ShieldCheck size={23} />
                             </div>
 
-                            <h2 className="text-3xl font-bold tracking-tight text-slate-900">
+                            <h2 className="text-2xl font-bold tracking-tight text-slate-900">
                                 Welcome back
                             </h2>
 
                             <p className="mt-2 text-sm leading-6 text-slate-500">
                                 Sign in to access the MAO Management System.
-                                Enter your account credentials below.
                             </p>
                         </div>
 
                         {status && (
-                            <div className="mb-5 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm font-medium text-green-800">
+                            <div className="mb-5 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
                                 {status}
                             </div>
                         )}
@@ -147,13 +82,12 @@ export default function Login({ status, canResetPassword }: Props) {
                         >
                             {({ processing, errors }) => (
                                 <>
+                                    {/* Email */}
                                     <div className="space-y-2">
-                                        <Label
-                                            htmlFor="email"
-                                            className="text-slate-700"
-                                        >
-                                            Email address
+                                        <Label htmlFor="email">
+                                            Email Address
                                         </Label>
+
                                         <Input
                                             id="email"
                                             type="email"
@@ -161,28 +95,27 @@ export default function Login({ status, canResetPassword }: Props) {
                                             required
                                             autoFocus
                                             autoComplete="email"
-                                            placeholder="name@example.com"
-                                            className="h-12 rounded-lg border-slate-200 bg-white"
+                                            placeholder="Enter your email address"
+                                            className="h-12 w-full rounded-lg border-slate-200 bg-slate-50/50 px-4 focus-visible:ring-green-700"
                                         />
+
                                         <InputError message={errors.email} />
                                     </div>
 
+                                    {/* Password */}
                                     <div className="space-y-2">
-                                        <div className="flex items-center justify-between">
-                                            <Label
-                                                htmlFor="password"
-                                                className="text-slate-700"
-                                            >
+                                        <div className="flex items-center justify-between gap-2">
+                                            <Label htmlFor="password">
                                                 Password
                                             </Label>
 
                                             {canResetPassword && (
-                                                <TextLink
-                                                    href={request()}
-                                                    className="text-xs font-semibold text-green-700 hover:text-green-800"
+                                                <a
+                                                    href={request().url}
+                                                    className="text-xs font-semibold text-green-700 hover:text-green-900"
                                                 >
                                                     Forgot password?
-                                                </TextLink>
+                                                </a>
                                             )}
                                         </div>
 
@@ -192,29 +125,32 @@ export default function Login({ status, canResetPassword }: Props) {
                                             required
                                             autoComplete="current-password"
                                             placeholder="Enter your password"
-                                            className="h-12 rounded-lg"
                                         />
+
                                         <InputError message={errors.password} />
                                     </div>
 
-                                    <div className="flex items-center space-x-3">
+                                    {/* Remember me */}
+                                    <div className="flex items-center gap-3">
                                         <Checkbox
                                             id="remember"
                                             name="remember"
                                         />
+
                                         <Label
                                             htmlFor="remember"
-                                            className="text-sm font-normal text-slate-600"
+                                            className="cursor-pointer text-sm font-normal text-slate-600"
                                         >
                                             Remember me
                                         </Label>
                                     </div>
 
+                                    {/* Submit */}
                                     <Button
                                         type="submit"
-                                        className="h-12 w-full rounded-lg bg-green-800 font-semibold text-white hover:bg-green-900"
                                         disabled={processing}
                                         data-test="login-button"
+                                        className="h-12 w-full rounded-lg bg-green-800 text-sm font-semibold text-white shadow-md shadow-green-900/10 transition hover:bg-green-900"
                                     >
                                         {processing ? (
                                             <>
@@ -223,7 +159,7 @@ export default function Login({ status, canResetPassword }: Props) {
                                             </>
                                         ) : (
                                             <>
-                                                Sign in to your account
+                                                Sign In
                                                 <ArrowRight
                                                     className="ml-2"
                                                     size={17}
@@ -234,33 +170,33 @@ export default function Login({ status, canResetPassword }: Props) {
                                 </>
                             )}
                         </Form>
+                    </div>
 
-                        <div className="mt-8 border-t border-slate-200 pt-6 text-center">
-                            <p className="text-sm text-slate-500">
-                                Don't have an account?{" "}
-                                <TextLink
-                                    href={register()}
-                                    className="font-semibold text-green-700 hover:text-green-800"
-                                >
-                                    Create an account
-                                </TextLink>
-                            </p>
+                    {/* Agriculture and fisheries identity */}
+                    <div className="mt-6 grid grid-cols-2 gap-3">
+                        <div className="flex items-center justify-center gap-2 rounded-xl border border-green-100 bg-white/80 px-3 py-3 text-xs font-semibold text-green-800 shadow-sm">
+                            <Leaf size={16} />
+                            Farm Agriculture
                         </div>
 
-                        <div className="mt-8 text-center text-xs text-slate-400">
-                            <p>Municipal Agriculture Office</p>
-                            <p className="mt-1">
-                                Estancia, Iloilo, Philippines
-                            </p>
+                        <div className="flex items-center justify-center gap-2 rounded-xl border border-sky-100 bg-white/80 px-3 py-3 text-xs font-semibold text-sky-700 shadow-sm">
+                            <Fish size={16} />
+                            Fisheries
                         </div>
                     </div>
+
+                    {/* Footer */}
+                    <p className="mt-8 text-center text-xs text-slate-400">
+                        © {new Date().getFullYear()} Municipality of Estancia,
+                        Iloilo
+                    </p>
                 </div>
-            </div>
+            </main>
         </>
     );
 }
 
 Login.layout = {
-    title: "Sign in to MAO",
+    title: "MAO Login",
     description: "Municipal Agriculture Office Management System",
 };
